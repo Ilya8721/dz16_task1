@@ -23,10 +23,12 @@ class GameTest {
         players.add(player4);
         players.add(player5);
         players.add(player6);
-        players.register(player1);
-        players.register(player2);
-        players.register(player3);
-        players.register(player4);
+        players.register(player1, "Registered");
+        players.register(player2, "Registered");
+        players.register(player3, "Registered");
+        players.register(player4, "Registered");
+        players.register(player5, "Unregistered");
+        players.register(player5, "Unregistered");
     }
 
 
@@ -69,7 +71,7 @@ class GameTest {
     @Test
     public void unregisteredPlayers() {
         Assertions.assertThrows(NotRegisteredException.class, () -> {
-            players.round("Masha", "Ira");
+            players.round("Ira", "Masha");
         });
     }
 
