@@ -9,20 +9,12 @@ class GameTest {
     Player player2 = new Player(2, "Petya", 20);
     Player player3 = new Player(3, "Kolya", 80);
     Player player4 = new Player(4, "Sasha", 80);
-    Player player5 = new Player(5, "Ira", 40);
-    Player player6 = new Player(6, "Masha", 140);
 
     Game players = new Game();
 
 
     @BeforeEach
     public void createData() {
-        players.add(player1);
-        players.add(player2);
-        players.add(player3);
-        players.add(player4);
-        players.add(player5);
-        players.add(player6);
         players.register(player1);
         players.register(player2);
         players.register(player3);
@@ -61,6 +53,14 @@ class GameTest {
     public void unregisteredPlayer1() {
 
         Assertions.assertThrows(NotRegisteredException.class, () -> {
+            players.round("Masha", "Sasha");
+        });
+    }
+
+
+    @Test
+    public void unregisteredPlayer2() {
+        Assertions.assertThrows(NotRegisteredException.class, () -> {
             players.round("Sasha", "Ira");
         });
     }
@@ -70,22 +70,6 @@ class GameTest {
     public void unregisteredPlayers() {
         Assertions.assertThrows(NotRegisteredException.class, () -> {
             players.round("Masha", "Ira");
-        });
-    }
-
-
-    @Test
-    public void unfoundPlayer1() {
-        Assertions.assertThrows(NotRegisteredException.class, () -> {
-            players.round("Kolya", "Ilya");
-        });
-    }
-
-
-    @Test
-    public void unfoundPlayers() {
-        Assertions.assertThrows(NotRegisteredException.class, () -> {
-            players.round("Misha", "Ilya");
         });
     }
 }
