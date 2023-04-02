@@ -10,16 +10,10 @@ public class Game {
     }
 
     public int round(String playerName1, String playerName2) {
-        Player player1 = null;
-        Player player2 = null;
-        for (String player : players.keySet()) {
-            if (player.equals(playerName1)) {
-                player1 = players.get(player);
-            }
-            if (player.equals(playerName2)) {
-                player2 = players.get(player);
-            }
-        }
+
+        Player player1 = players.get(playerName1);
+        Player player2 = players.get(playerName2);
+
         if (player1 == null) {
             throw new NotRegisteredException(playerName1);
         }
